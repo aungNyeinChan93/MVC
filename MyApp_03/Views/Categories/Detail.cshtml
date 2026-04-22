@@ -1,0 +1,25 @@
+﻿@model Category
+
+
+@{
+    ViewData["Title"] = "Category Detail";
+}
+
+<div class="mx-auto container">
+    <div class="card text-center w-100 bg-light rounded">
+        <div class="card-header">
+            @Model.Name
+        </div>
+        <div class="card-body">
+            @foreach (var post in Model.Posts!)
+            {
+                <h5 class="card-title">@post.Name</h5>
+                <p class="card-text">@post.Description</p>
+            }
+                <a href="/categories" class="btn btn-primary">Go Back</a>
+        </div>
+        <div class="card-footer text-body-secondary">
+            2 days ago
+        </div>
+    </div>
+</div>
