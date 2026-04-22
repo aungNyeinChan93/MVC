@@ -49,7 +49,7 @@ namespace SuperMarket.Services
             {
                 return false;
             }
-            _context.Categories.Update(new Category { CategoryId = existCategory.CategoryId, Name = createCategoryDto.Name, Posts = existCategory.Posts });
+            existCategory.Name = createCategoryDto.Name;
             _context.Entry(existCategory).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return true;

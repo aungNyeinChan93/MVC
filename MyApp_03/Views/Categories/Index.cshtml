@@ -2,8 +2,26 @@
 
 @{
     ViewData["Title"] = "Categoreis";
+
+    var isShow = TempData["isSuccess"] is not null;
+    bool isSuccess =isShow && Convert.ToBoolean(TempData["isSuccess"]);
 }
 
+@if (isShow)
+{
+    if (isSuccess)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["message"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["message"]
+        </div>
+    }
+}
 
 <div>
     <div>
@@ -24,20 +42,23 @@
                 <tr>
                     <th scope="row">@category.CategoryId</th>
                     <td>@category.Name</td>
-                    <td>
+                    <td class=" d-flex justify-content-end">
                         <a
                             asp-controller="Categories" 
                             asp-action="Edit" 
                             asp-route-id="@category.CategoryId" 
-                            class="btn btn-info"
+                            class="btn btn-warning me-1"
                         >Edit
                         </a>
                         <a asp-controller="Categories"
                                asp-action="Detail"
                                asp-route-id="@category.CategoryId"
-                               class="btn btn-info">
+                               class="btn btn-info me-1">
                             Detail
                         </a>
+                        <form action="/categories/delete/@category.CategoryId" method="post">
+                            <input type="submit" value="Delete" class="btn btn-danger" />    
+                        </form>
                     </td>
                 </tr>
                 
