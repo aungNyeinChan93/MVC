@@ -13,6 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddValidation();
 builder.Services.AddScoped<ICategoryService,CategoryService>();
+builder.Services.AddScoped<IPostService,PostService>();
 
 var app = builder.Build();
 

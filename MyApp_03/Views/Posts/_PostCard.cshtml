@@ -1,0 +1,15 @@
+﻿@model Post
+
+
+<div class="card">
+    <div class="card-header">
+        @Model.Name
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Category?.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <a href="/posts/edit/@Model.PostId" class="btn btn-warning">Edit</a>
+        <a href="/posts/delete/@Model.PostId" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+

@@ -1,0 +1,31 @@
+﻿@model List<Category>
+
+
+@{
+    ViewData["Title"] = "Create Post";
+}
+
+<div class="text-danger" asp-validation-summary="All"></div>
+
+<div class="mx-auto container">
+    <form method="post" action="/posts/create">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" name="Name">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="Description">
+        </div>
+        <div class="mb-3">
+            <label for="CategoryId" class="form-label">Category</label>
+            <select class="form-select" name="CategoryId" aria-label="Default select example">
+                @foreach (var category in Model)
+                {
+                    <option value="@category.CategoryId">@category.Name</option>
+                }
+            </select>
+        </div>       
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+</div>

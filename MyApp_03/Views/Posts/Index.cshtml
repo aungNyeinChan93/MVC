@@ -1,0 +1,39 @@
+﻿@model List<Post>
+
+@{
+    ViewData["Title"] = "Posts";
+
+    var isShow = TempData["isSuccess"] is not null;
+    var isSuccess = isShow && Convert.ToBoolean(TempData["isSuccess"]);
+}
+
+
+@if (isShow)
+{
+    @if (isSuccess)
+    {
+        <div class="alert alert-primary" role="alert">
+            @TempData["message"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["message"]
+        </div>
+    }
+}
+
+<div class="mx-auto container h-100">
+    <div class="p-2">
+        <a asp-action="create" asp-controller="posts" class="btn btn-outline-primary"> Create</a>
+     </div>
+    <div class="row">
+        @foreach (var post in Model)
+        {
+           <div class=" col-4 g-2">
+                <partial name="_PostCard" model="post" />
+           </div>
+        }
+    </div>
+</div>
