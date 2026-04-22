@@ -1,7 +1,11 @@
-﻿@{
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
     ViewData["Title"] = "Create Category";
 
 }
+
+<div asp-validation-summary="All" class="text-danger"></div>
 
 
 <div class="mx-auto container">

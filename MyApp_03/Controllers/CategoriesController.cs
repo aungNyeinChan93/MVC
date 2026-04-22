@@ -35,22 +35,27 @@ namespace SuperMarket.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateCategoryDto createCategoryDto)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                var category = await _categoryService.CreateAsync(createCategoryDto);
-                if (category is not null)
+                try
                 {
-                    TempData["isSuccess"] = true;
-                    TempData["message"] = "Create success";
+                        var category = await _categoryService.CreateAsync(createCategoryDto);
+                        if (category is not null)
+                        {
+                            TempData["isSuccess"] = true;
+                            TempData["message"] = "Create success";
+                        }  
                 }
-            }
-            catch (Exception err)
-            {
-                TempData["isSuccess"] = false;
-                TempData["message"] = err.Message;
-            }
+                catch (Exception err)
+                {
+                    TempData["isSuccess"] = false;
+                    TempData["message"] = err.Message;
+                }
            
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View("Create");
 
         }
 
